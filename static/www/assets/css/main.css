@@ -30,7 +30,7 @@ html,body {
 }
 
 body > div {
-    padding: 1rem 0;
+    padding: 3rem 0;
     width: 100%;
 }
 body > *:nth-child(even) {
@@ -44,8 +44,14 @@ h1, h2 {
 }
 
 hr {
-    margin: 3rem auto;
+    margin: 2rem auto;
     width: 50%;
+}
+
+@media (min-width: 500px) {
+    hr {
+        width: 250px;
+    }
 }
 
 a {
@@ -55,6 +61,18 @@ a {
 
 a:hover {
     opacity: 0.8;
+}
+
+p {
+    margin: 1rem 5%;
+    line-height: 1.25rem;
+}
+
+@media (min-width: 600px) {
+    p {
+        margin: 1rem auto;
+        width: 600px;
+    }
 }
 
 body > *:nth-child(even) a {
@@ -75,23 +93,32 @@ table {
     border: 1px solid white;
 }
 
-body > div:nth-child(even) table {
-    border: 1px solid #bd2c39;
-}
-
-td {
-    padding: 0.5rem;
-}
-
-thead, tr:nth-child(even) {
+thead {
     background: white;
     color: #bd2c39;
 }
 
-body > div:nth-child(even) thead, body > div:nth-child(even) tr:nth-child(even) {
+tr {
+    border-collapse: collapse;
+    line-height: 2em;
+    border: solid white 1px;
+}
+
+td {
+    padding: 0.5rem;
+    vertical-align: middle;
+}
+
+
+body > div:nth-child(even) thead {
     background: #bd2c39;
     color: white;
 }
+
+body > div:nth-child(even) tr {
+    border: solid #bd2c39 1px;
+}
+
 
 @media (min-width: 400px) {
     h1 {
@@ -129,8 +156,26 @@ body > div:nth-child(even) thead, body > div:nth-child(even) tr:nth-child(even) 
     margin: 1rem 0;
 }
 
-/* registration */
+/* remove canvas default margin */
+canvas{
+    display:block;
+    vertical-align:bottom;
+}
 
+.logo {
+    background: #bd2c39;
+    display: block;
+    margin: 2rem auto;
+    width: 90%;
+}
+
+@media (min-width: 400px) {
+    .logo {
+        width: 400px;
+    }
+}
+
+/* registration */
 input[type=text], input[type=email] {
     width: 100%;
     display: block;
@@ -189,31 +234,26 @@ form {
     }
 }
 
-/* remove canvas default margin */
-canvas{
-    display:block;
-    vertical-align:bottom;
+/* faq */
+.question:nth-child(2) {
+    padding: 2em 0 0 0;
 }
 
-.logo {
-    background: #bd2c39;
-    display: block;
-    margin: 2rem auto;
-    width: 90%;
+.question {
+    font-size: 1.25rem;
 }
 
-@media (min-width: 400px) {
-    .logo {
-        width: 400px;
-    }
+.answer {
+    padding: 1rem 0 0 0;
+    font-family: Roboto Slab, serif;
 }
 
 /* schedule */
-@media (min-width: 650px) {
+@media (min-width: 750px) {
     .schedule-holder {
         width: 40%;
         display: inline-block;
-        margin: 0;
+        margin: 0 1rem;
     }
 }
 
