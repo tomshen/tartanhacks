@@ -15,7 +15,6 @@ routes.init = (app, models, auth, config, callback) ->
 
     # /register and /openStatus
     routes.register = require('./register')(app, models, auth)
-
     callback()
 
 module.exports = routes

@@ -7,7 +7,7 @@
 models = null
 
 # how many 'regular' spots there are
-regularSpots = 315
+regularSpots = 3
 
 spotsTaken = (next) ->
     models.User.count

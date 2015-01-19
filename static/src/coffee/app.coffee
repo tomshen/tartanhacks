@@ -220,6 +220,8 @@ app.router = ->
         when 'register' then app.routes.register()
         when 'register/priority' then app.routes.register priority: true
 
+        when 'schedule' then app.routes.schedule()
+
         when '' then app.routes.home()
         else app.routes.err404 route
 
@@ -305,7 +307,6 @@ app.routes.profile = (options) ->
 #===============================================================================
 app.register = {}
 
-#
 # @function formHandler
 # @brief Serializes form, uploads the value, then redirects to /profile
 app.register.formHandler = (e) ->
@@ -349,6 +350,12 @@ app.templates.err404 = Handlebars.compile $('#error-404-template').html()
 app.routes.err404 = (addr) -> $('#content').html app.templates.err404 addr: addr
 
 app.err = app.routes.err
+
+#===============================================================================
+# Schedule
+#===============================================================================
+app.templates.schedule = Handlebars.compile $('#schedule-template').html()
+app.routes.schedule = -> $('#content').html app.templates.schedule()
 
 #===============================================================================
 # Home

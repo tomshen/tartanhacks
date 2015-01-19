@@ -235,6 +235,8 @@ app.router = function() {
       return app.routes.register({
         priority: true
       });
+    case 'schedule':
+      return app.routes.schedule();
     case '':
       return app.routes.home();
     default:
@@ -355,5 +357,11 @@ app.routes.err404 = function(addr) {
 };
 
 app.err = app.routes.err;
+
+app.templates.schedule = Handlebars.compile($('#schedule-template').html());
+
+app.routes.schedule = function() {
+  return $('#content').html(app.templates.schedule());
+};
 
 app.routes.home = app.routes.about;

@@ -22,6 +22,8 @@
         <div id="splash">
             <div id="splash-bg"></div>
             <div id="splash-info">
+                <a href="#/">Home</a>
+                <a href="#/schedule">Schedule</a>
                 <a href="#/profile">Profile</a>
                 <a href="#/register">Register</a>
                 <img class="logo" src="assets/imgs/logo.png" alt="TartanHacks logo"/>
@@ -51,8 +53,8 @@
         <script id="profile-template" type="text/x-handlebars-template">
             <h1>Your Profile</h1>
             {{#unless loggedIn}}
-                <p>you need to sign in with google to access your profile.</p>
-                <button id="googlesigninbtn">sign in</button>
+                <p>You need to sign in with Google to access your profile.</p>
+                <button id="googleSignInBtn">Sign In</button>
             {{else}}
                 {{#if edit }}
                     <form id="profile-form">
@@ -196,6 +198,93 @@
                 <button id="googleSignInBtn">Sign In</button>
             {{/if}}
         </script>
+
+        <!-- Schedule -->
+        <script id="schedule-template" type="text/x-handlebars-template">
+            <h1>Schedule</h1>
+            <div class="schedule-holder">
+                <h2>Friday</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>When</td>
+                            <td>What</td>
+                            <td>Where</td>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>5:00pm</td>
+                        <td>Check-in opens</td>
+                        <td>CUC McConomy</td>
+                    </tr>
+                    <tr>
+                        <td>6:00pm</td>
+                        <td>Opening Ceremony</td>
+                        <td>CUC McConomy</td>
+                    </tr>
+                    <tr>
+                        <td>7:00pm</td>
+                        <td>Dinner</td>
+                        <td>NSH Atrium</td>
+                    </tr>
+                    <tr>
+                        <td>7:30pm</td>
+                        <td>Hacking begins!</td>
+                        <td>Hack areas</td>
+                    </tr>
+                    <tr>
+                        <td>12:00am</td>
+                        <td>Midnight snack</td>
+                        <td>Rashid</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="schedule-holder">
+                <h2>Saturday</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>When</td>
+                            <td>What</td>
+                            <td>Where</td>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>7:30am</td>
+                        <td>Breakfast</td>
+                        <td>NSH Atrium</td>
+                    </tr>
+                    <tr>
+                        <td>12:00pm</td>
+                        <td>Lunch</td>
+                        <td>NSH Atrium</td>
+                    </tr>
+                    <tr>
+                        <td>5:00pm</td>
+                        <td>Dinner</td>
+                        <td>NSH Atrium</td>
+                    </tr>
+                    <tr>
+                        <td>6:00pm</td>
+                        <td>Hacking ends!</td>
+                        <td>Hack areas</td>
+                    </tr>
+                    <tr>
+                        <td>6:30pm</td>
+                        <td>Hack Expo</td>
+                        <td>CUC Rangos</td>
+                    </tr>
+                    <tr>
+                        <td>8:00pm</td>
+                        <td>Closing Ceremony</td>
+                        <td>CUC McConomy</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+            
+        </script>
+
         <!-- Error handlers -->
         <script id="error-template" type="text/x-handlebars-template">
             <h1>Uh Oh.</h1>
