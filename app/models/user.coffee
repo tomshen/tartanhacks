@@ -9,12 +9,27 @@ Schema = mongoose.Schema
 
 UserSchema = new Schema
     userID: String
-    isAdmin: Boolean
-    isMentor: Boolean
-    isCMU: Boolean
-    isCheckedIn: Boolean
-    accepted: Boolean
-    applicationTimestamp: Date
+    isAdmin:
+        type: Boolean
+        default: false
+
+    isMentor:
+        type: Boolean
+        default: false
+
+    isCheckedIn:
+        type: Boolean
+        default: false
+
+    isRegistered:
+        type: Boolean
+        default: false
+
+    registrationTime: Date
+    isAccepted:
+        type: Boolean
+        default: false
+
     andrewID: String
     firstName: String
     lastName: String
@@ -23,12 +38,13 @@ UserSchema = new Schema
     github: String
     avatarLink: String
     url: String
-    pastHackathons: [String]
+    pastHackathons: String
     linkedIn: String
     age: Number
     gender: String
     major: String
     school: String
     year: String
+    foodRestriction: String
 
 module.exports = mongoose.model 'User', UserSchema

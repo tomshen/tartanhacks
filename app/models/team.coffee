@@ -8,13 +8,23 @@ mongoose = require 'mongoose'
 Schema = mongoose.Schema
 
 TeamSchema = new Schema
-    leaderId: String
-    members: [String]
+    ownerID: String
+    member2ID: String
+    member3ID: String
+    member4ID: String
+    passphrase: String
     teamName: String
+    teamAvatar: String
+    isLooking:
+        type: Boolean
+        default: false
+    location: String
+
     hackName: String
     hackUrl: String
-    teamAvatar: String
     hackDescription: String
-    hackKeywords: [String]
+    isSubmitted:
+        type: Boolean
+        default: false
 
 module.exports = mongoose.model 'Team', TeamSchema

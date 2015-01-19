@@ -29,8 +29,6 @@ makeOrUpdateUser = (req, res, person, next) ->
                     isAdmin = person.id is config.defaultAdmin
                     user = new models.User
                             userID: person.id,
-                            firstName: person.name.givenName
-                            lastName: person.name.familyName
                             isAdmin: isAdmin
 
                     user.save (err) ->

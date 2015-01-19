@@ -13,9 +13,8 @@ routes.init = (app, models, auth, config, callback) ->
     # /me and /users
     routes.users = require('./users')(app, models, auth)
 
-    app.route '/test'
-        .get (req, res) ->
-            res.end JSON.stringify req.sessionID
+    # /register and /openStatus
+    routes.register = require('./register')(app, models, auth)
 
     callback()
 

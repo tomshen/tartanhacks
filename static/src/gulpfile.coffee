@@ -14,7 +14,7 @@ gutil = require 'gulp-util'
 gulp.task 'coffee', () ->
     gulp.src 'coffee/*.coffee'
         .pipe coffee bare:true
-        .pipe concat 'app.js'
+        # .pipe concat 'app.js'
         .pipe gulp.dest '../www/assets/js/'
         .on 'error', gutil.log
 

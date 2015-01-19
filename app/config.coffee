@@ -3,6 +3,8 @@
 # @author Oscar Bezi, oscar@bezi.io
 # @since 7 January 2015
 #===============================================================================
+
+# TODO: replace this all with nconf
 config = {}
 
 # General config

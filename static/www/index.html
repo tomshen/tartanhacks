@@ -6,188 +6,214 @@
         <meta name="author" content="Oscar Bezi, oscar@bezi.io"/>
         <meta name="viewport" content="initial-scale=1,width=device-width"/>
         <meta name="mobile-web-app-capable" content="yes"/>
+
         <title>TartanHacks 2015</title>
+
+        <!-- CSS -->
         <link href="http://fonts.googleapis.com/css?family=Montserrat:700,400" rel="stylesheet"/>
         <link href="http://fonts.googleapis.com/css?family=Roboto+Slab:700,400" rel="stylesheet"/>
         <link href="assets/css/main.css" rel="stylesheet"/>
+
+        <!-- Favicon -->
         <link rel="icon" sizes="196x196" href="assets/imgs/favicon.png"/>
     </head>
     <body>
+        <!-- Splash page -->
         <div id="splash">
             <div id="splash-bg"></div>
             <div id="splash-info">
+                <a href="#/profile">Profile</a>
+                <a href="#/register">Register</a>
                 <img class="logo" src="assets/imgs/logo.png" alt="TartanHacks logo"/>
                 <h1>TartanHacks</h1>
-                <p>TartanHacks is an annual hackathon at Carnegie Mellon University run by <a href="http://www.scottylabs.org/">Scottylabs</a>, a student organization.</p>
                 <p>February 6-7, 2015</p>
-                <p>Join our <a href="https://www.facebook.com/events/1600745683479118/">Facebook event</a> to stay up to date.</p>
             </div>
         </div>
-        <div id="registration">
-            <h1>Registration</h1>
-            <p>Registration opens on Monday January 19th at 6pm.  We offer priority registration to freshmen and female hackers at 5pm.</p>
-            <form id="register-form" action="/register" autocomplete="off" method="post">
-                <label>AndrewID</label>
-                <input type="text" name="andrewID" required placeholder="acarnegie">
 
-                <input type="checkbox" name="earlyAccess">
-                <label>I am a freshman and/or female.</label>
-            </form>
-            <input for="register-form" type="submit" value="Register">
-            <button id="googleSignIn">Sign in to Google</button>
-        </div>
+        <!-- Main content -->
+        <div id="content"></div>
 
-        <div id="faq">
-            <h1>FAQ</h1>
-
-            <p class="question">Q: How many people are you accepting initially?</p>
-            <p class="answer">A: 350</p>
-            <hr>
-
-            <p class="question">Q: What's the registration process like?</p>
-            <p class="answer">A: We give priority registration to first-years and female hackers. They'll be able to register an hour early at 5pm. After registration opens, about 350 spots will be given away first come, first serve. If you don't get a spot, you can still get on the waitlist, where there's a good chance you'll still be able to participate. More specific waitlist instructions will be sent out before the hackathon.</p>
-            <hr>
-
-            <p class="question">Q: How much does it cost to participate in TartanHacks?</p>
-            <p class="answer">A: Nothing. TartanHacks is free for all current CMU students.</p>
-            <hr>
-
-            <p class="question">Q: Can graduate students participate?</p>
-            <p class="answer">A: Graduate students are welcome at TartanHacks!</p>
-            <hr>
-
-            <p class="question">Q: I'm not a CS major, can I still join?</p>
-            <p class="answer">A: Yes! All majors and programs, even if they aren't technical, can participate in TartanHacks. Before you come, it's probably a good idea to brush up on your programming skills: check out the <a href="http://scottylabs.org/webdevweeks/">Web Dev Weeks website</a> to find some awesome tutorials on web development.</p>
-            <hr>
-
-            <p class="question">Q: I want to do a hardware hack. Is this okay?</p>
-            <p class="answer">A: Yes! Hardware hacks are welcome, but we don't provide equipment. If you need special accommodations for your demo, let an organizer know and we'll do our best to help you out.</p>
-            <hr>
-
-            <p class="question">Q: Who runs TartanHacks?</p>
-            <p class="answer">A: TartanHacks is run by <a href="http://scottylabs.org">ScottyLabs</a>, a student organization at Carnegie Mellon that develops apps for CMU and runs educational events, like TartanHacks. ScottyLabs isn't affiliated with any academic department, and all of our funding comes from our sponsor companies.</p>
-            <hr>
-
-            <p class="question">Q: What kind of prizes can I win?</p>
-            <p class="answer">A: There will be a grand prize for our hackathon, which will be awarded by a panel of judges from Carnegie Mellon. Our sponsors will also award prizes in a variety of categories, for creativity, technical prowess, and novelty.</p>
-            <hr>
-
-            <p class="question">Q: How can I get in touch with the organizers?</p>
-
-            <p class="answer">A: Send an email to <a href="mailto:info@scottylabs.org">info@scottylabs.org</a>!</p>
-
-        </div>
-        <div id="schedule">
-            <h1>Schedule</h1>
-            <div class="schedule-holder">
-                <h2>Friday</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <td>When</td>
-                            <td>What</td>
-                            <td>Where</td>
-                        </tr>
-                    </thead>
-                    <tr>
-                        <td>5:00pm</td>
-                        <td>Check-in opens</td>
-                        <td>CUC McConomy</td>
-                    </tr>
-                    <tr>
-                        <td>6:00pm</td>
-                        <td>Opening Ceremony</td>
-                        <td>CUC McConomy</td>
-                    </tr>
-                    <tr>
-                        <td>7:00pm</td>
-                        <td>Dinner</td>
-                        <td>NSH Atrium</td>
-                    </tr>
-                    <tr>
-                        <td>7:30pm</td>
-                        <td>Hacking begins!</td>
-                        <td>Hack areas</td>
-                    </tr>
-                    <tr>
-                        <td>12:00am</td>
-                        <td>Midnight snack</td>
-                        <td>Rashid</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="schedule-holder">
-                <h2>Saturday</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <td>When</td>
-                            <td>What</td>
-                            <td>Where</td>
-                        </tr>
-                    </thead>
-                    <tr>
-                        <td>7:30am</td>
-                        <td>Breakfast</td>
-                        <td>NSH Atrium</td>
-                    </tr>
-                    <tr>
-                        <td>12:00pm</td>
-                        <td>Lunch</td>
-                        <td>NSH Atrium</td>
-                    </tr>
-                    <tr>
-                        <td>5:00pm</td>
-                        <td>Dinner</td>
-                        <td>NSH Atrium</td>
-                    </tr>
-                    <tr>
-                        <td>6:00pm</td>
-                        <td>Hacking ends!</td>
-                        <td>Hack areas</td>
-                    </tr>
-                    <tr>
-                        <td>6:30pm</td>
-                        <td>Hack Expo</td>
-                        <td>CUC Rangos</td>
-                    </tr>
-                    <tr>
-                        <td>8:00pm</td>
-                        <td>Closing Ceremony</td>
-                        <td>CUC McConomy</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <div id="announcements"></div>
+        <!-- Footer -->
         <footer>
             <p>TartanHacks is brought to you by Scottylabs.  Found a bug?  Email us at <a href="mailto:help@scottylabs.org">help@scottylabs.org</a>.</p>
         </footer>
-        <script id="announcements-template" type="text/x-handlebars-template">
-            <h1>Announcements</h1>
-            {{#each announcements}}
-               <div class="announcement">
-                   <img src="http://scottylabs.org/img/team/{{toLowerCase name}}.jpg" alt="{{name}}" />
-                   <p>{{name}}: {{content}}</p>
-                   <span class="timestamp">{{timestamp}}</span>
-               </div>
-            {{else}}
-                <p>No announcements yet, but stay tuned!</p>
-            {{/each}}
+        <div id="googleSignIn"></div>
+
+        <!-- About page -->
+        <script id="about-template" type="text/x-handlebars-template">
+            <h1>About</h1>
+            <p>TartanHacks is an annual hackathon at Carnegie Mellon University run by <a href="http://www.scottylabs.org/">Scottylabs</a>, a student organization.</p>
+            <p>Registration opens on Monday, January 19th at 6pm.  We offer priority registration to freshmen and female hackers at 5pm.</p>
+            <p>Join our <a href="https://www.facebook.com/events/1600745683479118/">Facebook event</a> to stay up to date.</p>
         </script>
+
+        <!-- Profile -->
+        <script id="profile-template" type="text/x-handlebars-template">
+            <h1>Your Profile</h1>
+            {{#unless loggedIn}}
+                <p>you need to sign in with google to access your profile.</p>
+                <button id="googlesigninbtn">sign in</button>
+            {{else}}
+                {{#if edit }}
+                    <form id="profile-form">
+                        <label for="profile-firstName">First Name</label>
+                        <input type="text" name="firstName" id="profile-firstName" placeholder="Andrew" value="{{ user.firstName }}"/>
+
+                        <label for="acccount-lastName">Last Name</label>
+                        <input type="text" name="lastName" id="profile-lastName" placeholder="Carnegie" value="{{ user.lastName }}"/>
+
+                        <label for="profile-email">Email</label>
+                        <input type="email" name="email" id="profile-email" placeHolder="andrew@andrew.cmu.edu" value="{{ user.email }}"/>
+
+                        <label for="profile-github">Github username</label>
+                        <input type="text" name="github" id="profile-github" placeholder="octocat" value="{{ user.github }}"/>
+
+                        <label for="profile-url">URL</label>
+                        <input type="url" name="url" id="profile-url" placeholder="http://www.cmu.edu" value="{{ user.url }}"/>
+
+                        <label for="profile-pastHackathons">Past Hackathons</label>
+                        <input type="text" name="pastHackathons" id="profile-pastHackathons" placeholder="TartanHacks 2014" value="{{ user.pastHackathons }}"/>
+
+                        <label for="profile-linkedIn">LinkedIn</label>
+                        <input type="url" name="linkedIn" id="profile-linkedIn" placeholder="http://www.linkedin.com/pub/andrew-carnegie" value="{{ user.linkedIn }}"/>
+
+                        <label for="profile-age">Age</label>
+                        <input type="number" name="age" id="profile-age" placeholder="18" value="{{ user.age }}"/>
+
+                        <fieldset>
+                            <legend>Gender</legend>
+
+                            <label for="profile-gender-male">
+                                <input type="radio" name="gender" id="profile-gender-male" {{#if_cond user.gender '===' 'Male'}} checked {{/if_cond}} value="Male"/>
+                                Male
+                            </label>
+
+                            <label for="profile-gender-female">
+                                <input type="radio" name="gender" id="profile-gender-female" {{#if_cond user.gender '===' 'Female'}} checked {{/if_cond}} value="Female"/>
+                                Female
+                            </label>
+
+                            <label for="profile-gender-other">
+                                <input type="radio" name="gender" id="profile-gender-other" {{#if_cond user.gender '===' 'Other'}} checked {{/if_cond}} value="Other"/>
+                                Other
+                            </label>
+                        </fieldset>
+
+                        <label for="profile-major">Major</label>
+                        <input type="text" name="major" id="profile-major" placeholder="Underwater Basket Weaving" value="{{ user.major }}"/>
+
+                        <label for="profile-year">Year of Graduation</label>
+                        <input type="number" name="year" id="profile-year" placeholder="2015" value="{{ user.year }}"/>
+                    </form>
+                    <input id='profile-form-submit' for='profile-form' type="submit" value="Update"/>
+
+                {{else}}
+                    {{#if user}}
+                        <p>{{#if user.firstName}}Hi, {{user.firstName}}!{{else}}Hi!{{/if}}</p>
+                        <p>TODO: make nice profile.</p>
+                    {{else}}
+                        <p>Your profile is empty.  Why don't you fill it out?  This information will get passed along with your resume to our sponsors.</p>
+                    {{/if}}
+                    <a href="/#/profile/edit"><button>Edit Profile</button></a>
+                    <button id='logout'>Log Out</button>
+                {{/if}}
+                <hr>
+                <p>If you wish to delete your account, please type 'delete' in the box below and click the button.</p>
+                <p>You cannot undo this, and by doing this you forfeit any position you may have either in TartanHacks or on the waitlist.</p>
+                <form>
+                    <input type='text' id='profile-delete-text' placeholder='delete'>
+                </form>
+                <button id='profile-delete'>Delete My Profile</button>
+            {{/unless}}
+        </script>
+
+        <!-- Register -->
+        <script id="register-template" type="text/x-handlebars-template">
+            <h1>Register</h1>
+            {{#if loggedIn}}
+                {{#if user.isRegistered }}
+                    {{#if user.isAccepted}}
+                        <h2>Get Excited.</h2>
+                        <p>You've got a spot at TartanHacks 2015.  Make sure to check-in on February 6 to keep your spot!</p>
+                    {{else}}
+                        <p>Thanks for registering!  You're on the waitlist right now, but if you come to the check-in on February 6, you may get off.</p>
+                    {{/if}}
+                {{else}}
+                    {{#if_cond status '===' 'closed'}}
+                        <p>Registration opens on Monday January 19th at 6pm.  We offer priority registration to freshmen and female hackers at 5pm.</p>
+                    {{else}}
+                        {{#if_cond status '===' 'priority'}}
+                            {{#if priority}}
+                                <form id="register-form">
+                                    <label for="profile-firstName">First Name</label>
+                                    <input type="text" name="firstName" id="register-firstName" placeholder="Andrew" value="{{ user.firstName }}"/>
+
+                                    <label for="acccount-lastName">Last Name</label>
+                                    <input type="text" name="lastName" id="register-lastName" placeholder="Carnegie" value="{{ user.lastName }}"/>
+
+                                    <label for="register-email">Email</label>
+                                    <input type="email" name="email" id="register-email" placeholder="andrew@andrew.cmu.edu" value="{{ user.email }}"/>
+
+                                    <label>AndrewID (non-CMU students, leave this blank)</label>
+                                    <input type="text" name="andrewID" id="register-code" placeholder="andrew">
+
+                                    <label>Invite Code (for non-CMU students)</label>
+                                    <input type="text" name="code" id="register-code" placeholder="cmu<3pittquesne"/>
+                                    <label>Dietary restrictions</label>
+                                    <textarea for="register-form" placeholder="Vegetarian, vegan, peanut allergy, etc" name="foodRestriction"></textarea>
+                                </form>
+                                <input id="register-form-submit" for="register-form" type="submit" value="Register">
+                            {{else}}
+                                <p>Priority registration for freshmen and female hackers is open!  Full registration opens up soon, at 6pm.</p>
+                                <a href="/#/register/priority"><button>Register</button></a>
+                            {{/if}}
+                        {{else}}
+                            <form id="register-form">
+                                <label for="profile-firstName">First Name</label>
+                                <input type="text" name="firstName" id="register-firstName" placeholder="Andrew" value="{{ user.firstName }}"/>
+
+                                <label for="acccount-lastName">Last Name</label>
+                                <input type="text" name="lastName" id="register-lastName" placeholder="Carnegie" value="{{ user.lastName }}"/>
+
+                                <label for="register-email">Email</label>
+                                <input type="email" name="email" id="register-email" placeholder="andrew@andrew.cmu.edu" value="{{ user.email }}"/>
+
+                                <label>AndrewID (non-CMU students, leave this blank)</label>
+                                <input type="text" name="andrewID" id="register-code" placeholder="andrew">
+
+                                <label>Invite Code (for non-CMU students)</label>
+                                <input type="text" name="code" id="register-code" placeholder="cmu<3pittquesne"/>
+
+                                <label>Dietary restrictions</label>
+                                <textarea for="register-form" placeholder="Vegetarian, vegan, peanut allergy, etc" name="foodRestriction"></textarea>
+                            </form>
+                            <input id="register-form-submit" for="register-form" type="submit" value="Register">
+                        {{/if_cond}}
+                    {{/if_cond}}
+                {{/if}}
+            {{else}}
+                <p>You need to sign in with Google to register.</p>
+                <button id="googleSignInBtn">Sign In</button>
+            {{/if}}
+        </script>
+        <!-- Error handlers -->
+        <script id="error-template" type="text/x-handlebars-template">
+            <h1>Uh Oh.</h1>
+            <p>Something went wrong with the server logic.  That's not good :(.</p>
+            <p>You should go back to the homepage, <a href='/'>here</a>.</p>
+        </script>
+        <script id="error-404-template" type="text/x-handlebars-template">
+            <h1>Uh Oh.</h1>
+            <p>We can't find <a>/#/{{ addr }}</a>.</p>
+            <p>You should go back to the homepage, <a href='/'>here</a>.</p>
+        </script>
+
+        <!-- Vendor JS -->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.4/handlebars.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
         <script src="assets/js/particles.min.js"></script>
-        <script src="assets/js/app.js"></script>
-        <script>
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-             })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-            ga('create', 'UA-54783750-2', 'auto');
-            ga('send', 'pageview');
-        </script>
+        <script src="assets/js/app.js"></script>
     </body>
 </html>

@@ -9,21 +9,16 @@
  })();
 
 function render() {
-    gapi.signin.render('customBtn', {
+    gapi.signin.render('googleSignIn', {
             'callback': 'signinCallback',
             'clientid': '70162173884-17kl5i9qdhkj5qbrj3ds4bpg573dg5h0.apps.googleusercontent.com',
             'cookiepolicy': 'single_host_origin',
-            'scope': 'profile',
-            'hd': 'andrew.cmu.edu'
+            'scope': 'profile'
             });
 }
 function signinCallback(authResult) {
-    $.post('/api/login', { singleUseToken: authResult.code }, function (res) { 
+    $.post('/api/login', { singleUseToken: authResult.code }, function (res) {
             $.get('/api/me', null, function (data) { console.log(data); })
         })
 }
 </script>
-<div id="customBtn" class="customGPlusSignIn">
-    <span class="icon"></span>
-    <span class="buttonText">Google</span>
-</div>

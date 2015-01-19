@@ -31,7 +31,9 @@ stripUser = (user) ->
     copy 'major'
     copy 'school'
     copy 'year'
-    copy 'accepted'
+    copy 'isRegistered'
+    copy 'isAccepted'
+    copy 'isCheckedIn'
     return publicUser
 
 # @function stripUserPublic
@@ -51,8 +53,7 @@ stripUserPublic = (user) ->
 # fields a person can change about themselves (validation is done by the model
 # validators defined in ../models
 cleanRequest = (user, body) ->
-    publicUser = {}
-    copy = copyBtoA publicUser, user
+    copy = copyBtoA user, body
 
     copy 'andrewID'
     copy 'firstName'
@@ -69,10 +70,8 @@ cleanRequest = (user, body) ->
     copy 'major'
     copy 'school'
     copy 'year'
-    return publicUser
 
 module.exports = (app, models, auth) ->
-
     # GET /me
     app.route '/me'
         .get auth.requireLoggedIn, (req, res) ->
@@ -84,14 +83,14 @@ module.exports = (app, models, auth) ->
                     else
                         if user?
                             res.status 200
-                            res.send JSON.stringify stripUser user
+                            res.end JSON.stringify stripUser user
                         else
                             res.status 404
-                            res.send 'User not found.'
+                            res.end 'User not found.'
 
     # PUT /me
     app.route '/me'
-        .post auth.requireLoggedIn, (req, res) ->
+        .put auth.requireLoggedIn, (req, res) ->
             models.User.findOne
                     userID: req.session.userID
                 , (err, user) ->
@@ -99,16 +98,35 @@ module.exports = (app, models, auth) ->
                         models.err res, err
                     else
                         if user?
-                            copyUser user, req.body
+                            # these are read-only
+                            delete req.body.isAccepted
+                            delete req.body.isRegistered
+                            delete req.body.isCheckedIn
+                            delete req.body.school
+
+                            cleanRequest user, req.body
                             user.save (err) ->
                                 if err?
                                     models.err res, err
                                 else
                                     res.status 200
-                                    res.send 'User updated.'
+                                    res.end 'User updated.'
                         else
                             res.status 404
-                            res.send 'User not found.'
+                            res.end 'User not found.'
+
+    # DELETE /me
+    app.route '/me'
+        .delete auth.requireLoggedIn, (req, res) ->
+            models.User.remove
+                userID: req.session.userID
+            , (err, user) ->
+                if err?
+                    models.err res, err
+                else
+                    res.status 200
+                    res.end 'User deleted.'
+
     # GET /users
     app.route '/users'
         .get auth.requireAdmin, (req, res) ->
@@ -191,4 +209,4 @@ module.exports = (app, models, auth) ->
                         models.err res, err
                     else
                         res.status 200
-                        res.send 'User deleted.'
+                        res.end 'User deleted.'
