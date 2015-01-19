@@ -9,14 +9,16 @@ window.app = {}
 
 # particlesJS
 #============
-particlesJS 'splash-bg',
+app.particlesJS = -> 
+    console.log 'particles'
+    particlesJS 'splash-bg',
         particles:
             color: '#fff',
             shape: 'triangle',
             opacity: 1,
             size: 2,
             size_random: false,
-            nb: $(window).width() / 5,
+            nb: $(window).width() / 10,
             line_linked:
                 enable_auto: true,
                 distance: 100,
@@ -105,6 +107,11 @@ app.google.callback = (res) ->
     s.parentNode.insertBefore po, s
 )()
 
+
+#===============================================================================
+# Navbar
+#===============================================================================
+$('#navbar').on 'click', () -> $('#navbar').toggleClass 'active'
 
 #===============================================================================
 # API
@@ -221,6 +228,7 @@ app.router = ->
         when 'register/priority' then app.routes.register priority: true
 
         when 'schedule' then app.routes.schedule()
+        when 'faq' then app.routes.faq()
 
         when '' then app.routes.home()
         else app.routes.err404 route
@@ -344,7 +352,9 @@ app.routes.register = (options) ->
 # Error Handlers
 #===============================================================================
 app.templates.err = Handlebars.compile $('#error-template').html()
-app.routes.err = -> $('#content').html app.templates.err()
+app.routes.err = ->
+    $('#content').html app.templates.err()
+    app.router()
 
 app.templates.err404 = Handlebars.compile $('#error-404-template').html()
 app.routes.err404 = (addr) -> $('#content').html app.templates.err404 addr: addr
@@ -358,6 +368,15 @@ app.templates.schedule = Handlebars.compile $('#schedule-template').html()
 app.routes.schedule = -> $('#content').html app.templates.schedule()
 
 #===============================================================================
+# FAQ
+#===============================================================================
+app.templates.faq = Handlebars.compile $('#faq-template').html()
+app.routes.faq = -> $('#content').html app.templates.faq()
+
+#===============================================================================
 # Home
 #===============================================================================
-app.routes.home = app.routes.about
+app.templates.splash = Handlebars.compile $('#splash-template').html()
+app.routes.home = ->
+    $('#content').html app.templates.splash()
+    app.particlesJS()

@@ -2,12 +2,29 @@
 <html lang="en">
     <head>
         <meta charset="utf-8"/>
-        <meta name="description" content="Tartanhacks 2014 Website"/>
         <meta name="author" content="Oscar Bezi, oscar@bezi.io"/>
+
+        <meta name="description" content="TartanHacks is an annual hackaton at Carnegie Mellon University, run by the student organization ScottyLabs."/>
+        <title>TartanHacks</title>
+
+        <!-- Mobile -->
         <meta name="viewport" content="initial-scale=1,width=device-width"/>
         <meta name="mobile-web-app-capable" content="yes"/>
 
-        <title>TartanHacks 2015</title>
+        <!-- Twitter Cards -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="/assets/imgs/feature.png">
+        <meta name="twitter:title" content="TartanHacks 2015">
+        <meta name="twitter:description" content="TartanHacks is an annual hackaton at Carnegie Mellon University, run by the student organization ScottyLabs.">
+
+        <!-- Open Graph -->
+        <meta property="og:local" content="en_US">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="http://tartanhacks.com">
+        <meta property="og:title" content="TartanHacks 2015">
+        <meta property="og:description" content="TartanHacks is an annual hackaton at Carnegie Mellon University, run by the student organization ScottyLabs.">
+        <meta property="og:image" content="/assets/imgs/feature.png">
+        <meta property="og:site_nafe" content="TartanHacks 2015">
 
         <!-- CSS -->
         <link href="http://fonts.googleapis.com/css?family=Montserrat:700,400" rel="stylesheet"/>
@@ -18,18 +35,22 @@
         <link rel="icon" sizes="196x196" href="assets/imgs/favicon.png"/>
     </head>
     <body>
-        <!-- Splash page -->
-        <div id="splash">
-            <div id="splash-bg"></div>
-            <div id="splash-info">
-                <a href="#/">Home</a>
-                <a href="#/schedule">Schedule</a>
-                <a href="#/profile">Profile</a>
-                <a href="#/register">Register</a>
-                <img class="logo" src="assets/imgs/logo.png" alt="TartanHacks logo"/>
-                <h1>TartanHacks</h1>
-                <p>February 6-7, 2015</p>
-            </div>
+        <!-- navbar -->
+        <div id="navbar">
+            <img class="toggle" alt="menu icon" src="/assets/imgs/menu-icon.png">
+            <ul>
+                <li><a href="#/"><p class="brand">TartanHacks</p></a></li>
+                <hr>
+                <li><a href="#/about">About</a></li>
+                <hr>
+                <li><a href="#/faq">FAQ</a></li>
+                <hr>
+                <li><a href="#/schedule">Schedule</a></li>
+                <hr>
+                <li><a href="#/profile">Profile</a></li>
+                <hr>
+                <li><a href="#/register">Register</a></li>
+            </ul>
         </div>
 
         <!-- Main content -->
@@ -40,6 +61,16 @@
             <p>TartanHacks is brought to you by Scottylabs.  Found a bug?  Email us at <a href="mailto:help@scottylabs.org">help@scottylabs.org</a>.</p>
         </footer>
         <div id="googleSignIn"></div>
+
+        <!-- Splash page -->
+        <script id="splash-template" type="text/x-handlebars-template">
+            <div id="splash-bg"></div>
+            <div id="splash-info">
+                <img class="logo" src="assets/imgs/logo.png" alt="TartanHacks logo"/>
+                <h1>TartanHacks</h1>
+                <p>February 6-7, 2015</p>
+            </div>
+        </script>
 
         <!-- About page -->
         <script id="about-template" type="text/x-handlebars-template">
@@ -282,7 +313,55 @@
                 </table>
             </div>
         </div>
-            
+        </script>
+
+        <!-- FAQ -->
+        <script id="faq-template" type="text/x-handlebars-template">
+            <h1>FAQ</h1>
+
+            <p class="question">How many people are you accepting initially?</p>
+            <p class="answer">350</p>
+            <hr>
+
+            <p class="question">What's the registration process like?</p>
+            <p class="answer">We give priority registration to first-years and female hackers. They'll be able to register an hour early at 5pm. After registration opens, about 350 spots will be given away first come, first serve. If you don't get a spot, you can still get on the waitlist, where there's a good chance you'll still be able to participate. More specific waitlist instructions will be sent out before the hackathon.</p>
+            <hr>
+
+            <p class="question">What's the maximum team size?</p>
+            <p class="answer">You can have at most 4 people on one team.</p>
+            <hr>
+
+            <p class="question">Do I need to specify my team at the time of registration?</p>
+            <p class="answer">Nope! We'll be doing team registration later. The biggest thing is just to sign up, so not having a team right now shouldn't be a deterrent!</p>
+            <hr>
+
+            <p class="question">How much does it cost to participate in TartanHacks?</p>
+            <p class="answer">Nothing. TartanHacks is free for all current CMU students.</p>
+            <hr>
+
+            <p class="question">Can graduate students participate?</p>
+            <p class="answer">Graduate students are welcome at TartanHacks!</p>
+            <hr>
+
+            <p class="question">I'm not a CS major, can I still join?</p>
+            <p class="answer">Yes! All majors and programs, even if they aren't technical, can participate in TartanHacks. Before you come, it's probably a good idea to brush up on your programming skills: check out the <a href="http://scottylabs.org/webdevweeks/">Web Dev Weeks website</a> to find some awesome tutorials on web development.</p>
+            <hr>
+
+            <p class="question">I want to do a hardware hack. Is this okay?</p>
+            <p class="answer">Yes! Hardware hacks are welcome, but we don't provide equipment. If you need special accommodations for your demo, let an organizer know and we'll do our best to help you out.</p>
+            <hr>
+
+            <p class="question">Who runs TartanHacks?</p>
+            <p class="answer">TartanHacks is run by <a href="http://scottylabs.org">ScottyLabs</a>, a student organization at Carnegie Mellon that develops apps for CMU and runs educational events, like TartanHacks. ScottyLabs isn't affiliated with any academic department, and all of our funding comes from our sponsor companies.</p>
+            <hr>
+
+            <p class="question">What kind of prizes can I win?</p>
+            <p class="answer">There will be a grand prize for our hackathon, which will be awarded by a panel of judges from Carnegie Mellon. Our sponsors will also award prizes in a variety of categories, for creativity, technical prowess, and novelty.</p>
+            <hr>
+
+            <p class="question">How can I get in touch with the organizers?</p>
+
+            <p class="answer">Send an email to <a href="mailto:info@scottylabs.org">info@scottylabs.org</a>!</p>
         </script>
 
         <!-- Error handlers -->

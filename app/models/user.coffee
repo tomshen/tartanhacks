@@ -8,7 +8,11 @@ mongoose = require 'mongoose'
 Schema = mongoose.Schema
 
 UserSchema = new Schema
-    userID: String
+    userID:
+        type: String
+        required: true
+        index:
+            unique: true
     isAdmin:
         type: Boolean
         default: false

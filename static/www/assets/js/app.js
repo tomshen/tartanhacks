@@ -1,35 +1,38 @@
 window.app = {};
 
-particlesJS('splash-bg', {
-  particles: {
-    color: '#fff',
-    shape: 'triangle',
-    opacity: 1,
-    size: 2,
-    size_random: false,
-    nb: $(window).width() / 5,
-    line_linked: {
-      enable_auto: true,
-      distance: 100,
+app.particlesJS = function() {
+  console.log('particles');
+  return particlesJS('splash-bg', {
+    particles: {
       color: '#fff',
-      opacity: 0.9,
-      widapp: 1,
-      condensed_mode: {
-        enable: false,
-        rotateX: 600,
-        rotateY: 600
+      shape: 'triangle',
+      opacity: 1,
+      size: 2,
+      size_random: false,
+      nb: $(window).width() / 10,
+      line_linked: {
+        enable_auto: true,
+        distance: 100,
+        color: '#fff',
+        opacity: 0.9,
+        widapp: 1,
+        condensed_mode: {
+          enable: false,
+          rotateX: 600,
+          rotateY: 600
+        }
+      },
+      anim: {
+        enable: true,
+        speed: 1
       }
     },
-    anim: {
-      enable: true,
-      speed: 1
-    }
-  },
-  interactivity: {
-    enable: false
-  },
-  retina_detect: true
-});
+    interactivity: {
+      enable: false
+    },
+    retina_detect: true
+  });
+};
 
 Handlebars.registerHelper('if_cond', function(v1, operator, v2, options) {
   switch (operator) {
@@ -125,6 +128,10 @@ app.google.callback = function(res) {
   s = document.getElementsByTagName('script')[0];
   return s.parentNode.insertBefore(po, s);
 })();
+
+$('#navbar').on('click', function() {
+  return $('#navbar').toggleClass('active');
+});
 
 app.api = {};
 
@@ -237,6 +244,8 @@ app.router = function() {
       });
     case 'schedule':
       return app.routes.schedule();
+    case 'faq':
+      return app.routes.faq();
     case '':
       return app.routes.home();
     default:
@@ -345,7 +354,8 @@ app.routes.register = function(options) {
 app.templates.err = Handlebars.compile($('#error-template').html());
 
 app.routes.err = function() {
-  return $('#content').html(app.templates.err());
+  $('#content').html(app.templates.err());
+  return app.router();
 };
 
 app.templates.err404 = Handlebars.compile($('#error-404-template').html());
@@ -364,4 +374,15 @@ app.routes.schedule = function() {
   return $('#content').html(app.templates.schedule());
 };
 
-app.routes.home = app.routes.about;
+app.templates.faq = Handlebars.compile($('#faq-template').html());
+
+app.routes.faq = function() {
+  return $('#content').html(app.templates.faq());
+};
+
+app.templates.splash = Handlebars.compile($('#splash-template').html());
+
+app.routes.home = function() {
+  $('#content').html(app.templates.splash());
+  return app.particlesJS();
+};

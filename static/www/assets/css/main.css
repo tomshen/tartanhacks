@@ -16,7 +16,7 @@ hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padd
 input,select{vertical-align:middle}
 
 /* @file main.css
- * @brief Main styles for the TartanHacks 2014 website.
+ * @brief Main styles for the TartanHacks 2015 website.
  * @author Oscar Bezi, oscar@bezi.io
  * @since 23 November 2014
  */
@@ -131,7 +131,7 @@ body > div:nth-child(even) tr {
 }
 
 /* splash page */
-#splash {
+#content {
     position: relative;
 }
 
@@ -140,12 +140,13 @@ body > div:nth-child(even) tr {
     top: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.9;
+    background: #bd2c39;
 }
 
 #splash-info {
     position: relative;
     z-index: 1;
+    color: white;
 }
 #splash-info > * {
     margin: 0 auto 1rem auto;
@@ -246,6 +247,84 @@ form {
     }
 }
 
+/* navbar */
+#navbar {
+    position: relative;
+    padding: 0.75rem 0;
+    margin: 0;
+    font-size: 1.5rem;
+    height: 2rem;
+    overflow: hidden;
+}
+
+#navbar.active {
+    height: auto;
+    background: white;
+    color: #bd2c39;
+}
+
+#navbar.active hr {
+    margin: 0.25rem auto;
+}
+
+#navbar a {
+    text-decoration: none;
+    color: #bd2c39;
+}
+
+.brand {
+    color: white;
+    padding: 0;
+    margin: 0 auto;
+    font-family: Roboto Slab, serif;
+    font-variant: small-caps;
+}
+
+#navbar.active .brand {
+    color: #bd2c39;
+}
+
+.toggle {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 80%;
+    width: auto;
+}
+
+@media (min-width: 850px) {
+    .toggle {
+        display: none;
+    }
+
+    #navbar {
+        height: auto;
+        background: white;
+        color: #bd2c39;
+    }
+
+    #navbar li {
+       display: inline-block; 
+       padding: 0 1rem;
+    }
+
+    #navbar hr {
+        display: none;
+    }
+
+    .brand {
+        margin: 0 2rem 0 0;
+        width: auto;
+        text-align: left;
+        padding: 0;
+        color: #bd2c39;
+    }
+}
+
+#navbar.active .toggle {
+    display: none;
+}
 
 /* faq */
 .question:nth-child(2) {
