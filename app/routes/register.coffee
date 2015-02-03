@@ -7,7 +7,7 @@
 models = null
 
 # how many 'regular' spots there are
-regularSpots = 3
+regularSpots = 315
 
 spotsTaken = (next) ->
     models.User.count
@@ -27,8 +27,12 @@ spotsAvailable = (next, none) ->
         else
             next()
 
+accessCodes =
+    pitt: []
+    duq: []
+
 # @TODO: enclose this in a private variable
-openStatus = 'closed'
+openStatus = 'open'
 
 setOpenStatus = (status, next) ->
     if status in ['closed', 'priority', 'open']
@@ -55,6 +59,8 @@ module.exports = (app, dbModels, auth) ->
                                     status: getOpenStatus()
                                     spotsTaken: count
                                     spotsRemaining: regularSpots - count
+                                    accessPitt: accessCodes.pitt
+                                    accessDuq: accessCodes.duq
                 , () ->
                     # non admins only get open-priority-closed
                     res.status 200
@@ -65,12 +71,16 @@ module.exports = (app, dbModels, auth) ->
         .put auth.requireAdmin, (req, res) ->
             if req.body.status?
                 setOpenStatus req.body.status, (err) ->
-                    if err?
-                        res.status 400
-                        res.end err
-                    else
-                        res.status 200
-                        res.end 'Status updated.'
+                        if err?
+                            res.status 400
+                            res.end err
+                        else
+                            res.status 200
+                            res.end 'Status updated.'
+                if req.body.accessPitt?
+                    accessCodes.pitt = JSON.parse req.body.accessPitt
+                if req.body.accessDuq?
+                    accessCodes.duq = JSON.parse req.body.accessDuq
             else
                 res.status 400
                 res.end 'Malformed request.'
@@ -91,27 +101,42 @@ module.exports = (app, dbModels, auth) ->
             require 'firstName', () ->
                 require 'lastName', () ->
                     require 'email', () ->
-                        console.log clean
                         if getOpenStatus() is 'closed'
                             res.status 400
                             res.send 'Malformed request.'
                             return
 
                         # we are open and they can register
-
                         # dietary restrictions
                         if req.body.foodRestriction?
                             clean.foodRestriction = req.body.foodRestriction
 
-                        # @TODO: validator for non-CMU folks
-                        validateCode = -> false
+                        validateCode = (code) ->
+                            code in accessCodes.pitt or code in accessCodes.duq
 
+                        getSchool = (code) ->
+                            if code in accessCodes.pitt
+                                return 'University of Pittsburgh'
+                            else
+                                return 'Duquesne University'
+
+                        removeCode = (code) ->
+                            if validateCode code
+                                if code in accessCodes.pitt
+                                    accessCodes.pitt.splice accessCodes.pitt.indexOf(code), 1
+                                else
+                                    accessCodes.duq.splice accessCodes.duq.indexOf(code), 1
+
+
+                        isAccessCode = false
                         # check school stuff
-                        if req.body.andrewID?
+                        if req.body.andrewID? and req.body.andrewID.length > 0
                             clean.andrewID = req.body.andrewID
                             clean.school = 'Carnegie Mellon University'
                         else if req.body.code? and validateCode req.body.code
                             clean.school = getSchool req.body.code
+                            removeCode req.body.code
+                            isAccessCode = true
                         else
                             res.status 400
                             res.send 'Malformed request.'
@@ -140,25 +165,34 @@ module.exports = (app, dbModels, auth) ->
                                             if err?
                                                 models.err res, err
                                             else
-                                                spotsAvailable () ->
-                                                        user.isAccepted = true
-                                                        user.save (err) ->
-                                                            if err?
-                                                                models.err res, err
-                                                            else
-                                                                res.status 200
-                                                                res.send 'Successfully registered.'
-                                                    , (err) ->
-                                                            if err?
-                                                                models.err res, err
-                                                            else
-                                                                user.isAccepted = false
-                                                                user.save (err) ->
-                                                                    if err?
-                                                                        models.err res, err
-                                                                    else
-                                                                        res.status 200
-                                                                        res.send 'Successfully registered.'
+                                                if isAccessCode
+                                                    user.isAccepted = true
+                                                    user.save (err) ->
+                                                        if err?
+                                                            models.err res, err
+                                                        else
+                                                            res.status 200
+                                                            res.send 'Successfully registered.'
+                                                else
+                                                    spotsAvailable () ->
+                                                            user.isAccepted = true
+                                                            user.save (err) ->
+                                                                if err?
+                                                                    models.err res, err
+                                                                else
+                                                                    res.status 200
+                                                                    res.send 'Successfully registered.'
+                                                        , (err) ->
+                                                                if err?
+                                                                    models.err res, err
+                                                                else
+                                                                    user.isAccepted = false
+                                                                    user.save (err) ->
+                                                                        if err?
+                                                                            models.err res, err
+                                                                        else
+                                                                            res.status 200
+                                                                            res.send 'Successfully registered.'
                                     else
                                         res.status 404
                                         res.end 'User not found.'

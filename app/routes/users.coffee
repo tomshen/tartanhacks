@@ -106,6 +106,7 @@ module.exports = (app, models, auth) ->
 
                             cleanRequest user, req.body
                             user.save (err) ->
+                                console.log req.session.userID
                                 if err?
                                     models.err res, err
                                 else
