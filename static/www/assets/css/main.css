@@ -305,7 +305,7 @@ form {
     }
 
     #navbar li {
-       display: inline-block; 
+       display: inline-block;
        padding: 0 1rem;
     }
 
@@ -399,4 +399,26 @@ footer {
  * google API.  !important because the GAPI tries to render it */
 #googleSignIn {
     display: none !important;
+}
+
+.sponsor-logos {
+    list-style: none;
+    margin: 50px 0;
+}
+
+.sponsor-logos li {
+    display: inline;
+    padding-right: 1em;
+}
+
+.gold img {
+    height: 150px;
+}
+
+.bronze img {
+    height: 100px;
+}
+
+.fafsla img {
+    height: 50px;
 }
