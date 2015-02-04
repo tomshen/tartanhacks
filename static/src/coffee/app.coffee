@@ -9,7 +9,7 @@ window.app = {}
 
 # particlesJS
 #============
-app.particlesJS = -> 
+app.particlesJS = ->
     console.log 'particles'
     particlesJS 'splash-bg',
         particles:
@@ -106,7 +106,6 @@ app.google.callback = (res) ->
     s = document.getElementsByTagName('script')[0]
     s.parentNode.insertBefore po, s
 )()
-
 
 #===============================================================================
 # Navbar

@@ -1,0 +1,140 @@
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="author" content="Oscar Bezi, oscar@bezi.io"/>
+
+        <meta name="description" content="TartanHacks is an annual hackaton at Carnegie Mellon University, run by the student organization ScottyLabs."/>
+        <title>TartanHacks</title>
+
+        <!-- Mobile -->
+        <meta name="viewport" content="initial-scale=1,width=device-width"/>
+        <meta name="mobile-web-app-capable" content="yes"/>
+
+        <!-- Twitter Cards -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="/assets/imgs/feature.png">
+        <meta name="twitter:title" content="TartanHacks 2015">
+        <meta name="twitter:description" content="TartanHacks is an annual hackaton at Carnegie Mellon University, run by the student organization ScottyLabs.">
+
+        <!-- Open Graph -->
+        <meta property="og:local" content="en_US">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="http://tartanhacks.com">
+        <meta property="og:title" content="TartanHacks 2015">
+        <meta property="og:description" content="TartanHacks is an annual hackaton at Carnegie Mellon University, run by the student organization ScottyLabs.">
+        <meta property="og:image" content="/assets/imgs/feature.png">
+        <meta property="og:site_nafe" content="TartanHacks 2015">
+
+        <!-- CSS -->
+        <link href="http://fonts.googleapis.com/css?family=Montserrat:700,400" rel="stylesheet"/>
+        <link href="http://fonts.googleapis.com/css?family=Roboto+Slab:700,400" rel="stylesheet"/>
+        <link href="assets/css/main.css" rel="stylesheet"/>
+
+        <!-- Favicon -->
+        <link rel="icon" sizes="196x196" href="assets/imgs/favicon.png"/>
+    </head>
+    <body>
+    <h1><a href="#/">Administrator Panel</a></h1>
+
+        <div id="content"></div>
+        <!-- Footer -->
+        <footer>
+            <p>TartanHacks is brought to you by Scottylabs.  Found a bug?  Email us at <a href="mailto:help@scottylabs.org">help@scottylabs.org</a>.</p>
+        </footer>
+        <div id="googleSignIn"></div>
+
+        <!-- Splash page -->
+        <script id="home-template" type="text/x-handlebars-template">
+            <h2>Welcome, administrator!</h2>
+            <hr>
+            <ul>
+                <li><a href="#/hacker-list">Hackers</a></li>
+                <li><a href="#/user-list">Users</a></li>
+                <li><a href="#/admin-list">Admins</a></li>
+                <li><a href="#/mentor-list">Mentors</a></li>
+            </ul>
+
+        </script>
+
+        <!-- Various lists -->
+        <script id="hacker-list-template" type="text/x-handlebars-template">
+            <h2>Hackers ({{users.length}})</h2>
+            <p>These users have been accepted.</p>
+            <table>
+                <tr>
+                    <td>First</td>
+                    <td>Last</td>
+                    <td>Email</td>
+                    <td>Check In</td>
+                    <td>Check In/Delete</td>
+                {{#each users}}
+                    <tr>
+                        <td>{{this.firstName}}</td>
+                        <td>{{this.lastName}}</td>
+                        <td>{{this.email}}</td>
+                        <td>{{this.isCheckedIn}}</td>
+                        <td><a onclick="app.lists.checkinHandler('{{this.userID}}');">check in</a>/<a onclick="app.lists.deleteHandler('{{this.userID}}');">delete!</a></td>
+                    </tr>
+                {{else}}
+                    There are no registered users!
+                {{/each}}
+            </table>
+            <form>
+                <label>Emails:</label>
+                <textarea class="email-list">{{#each users}}{{this.email}}, {{/each}}</textarea>
+            </form>
+        </script>
+
+        <script id="user-list-template" type="text/x-handlebars-template">
+            <h2>Users ({{users.length}})</h2>
+            <p>These are all registered users that are not a mentor, and admin, or an accepted hacker:</p>
+            <table>
+                <tr>
+                    <td>First</td>
+                    <td>Last</td>
+                    <td>Email</td>
+                    <td>Registered</td>
+                    <td>Accept/Delete</td>
+                {{#each users}}
+                    <tr>
+                        <td>{{this.firstName}}</td>
+                        <td>{{this.lastName}}</td>
+                        <td>{{this.email}}</td>
+                        <td>{{this.isRegistered}}</td>
+                        <td><a onclick="app.lists.acceptHandler('{{this.userID}}');">accept</a>/<a onclick="app.lists.deleteHandler('{{this.userID}}');">delete!</a></td>
+                    </tr>
+                {{else}}
+                    There are no registered users!
+                {{/each}}
+            </table>
+        </script>
+
+        <!-- Login template -->
+        <script id="login-template" type="text/x-handlebars-template">
+            <h1>Login</h1>
+            <p>You need to sign in with Google to use the admin panel.</p>
+            <button id="googleSignInBtn">Sign In</button>
+        </script>
+
+        <!-- Error handlers -->
+        <script id="error-template" type="text/x-handlebars-template">
+            <h1>Uh Oh.</h1>
+            <p>Something went wrong with the server logic.  That's not good :(.</p>
+            <p>You should go back to the homepage, <a href='/'>here</a>.</p>
+        </script>
+        <script id="error-404-template" type="text/x-handlebars-template">
+            <h1>Uh Oh.</h1>
+            <p>We can't find <a>/#/{{ addr }}</a>.</p>
+            <p>You should go back to the homepage, <a href='/'>here</a>.</p>
+        </script>
+
+        <!-- Vendor JS -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.4/handlebars.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+
+        <script src="assets/js/admin.js"></script>
+    </body>
+</html>

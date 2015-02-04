@@ -34,6 +34,7 @@ stripUser = (user) ->
     copy 'isRegistered'
     copy 'isAccepted'
     copy 'isCheckedIn'
+    copy 'isAdmin'
     return publicUser
 
 # @function stripUserPublic
@@ -170,10 +171,10 @@ module.exports = (app, models, auth) ->
                         if user?
                             copy = copyBtoA user, req.body
                             copy 'isAdmin'
+                            copy 'isAccepted'
                             copy 'isMentor'
                             copy 'isCMU'
                             copy 'isCheckedIn'
-                            copy 'accepted'
                             copy 'applicationTimestamp'
                             copy 'andrewID'
                             copy 'firstName'
@@ -203,11 +204,11 @@ module.exports = (app, models, auth) ->
     # DELETE /users/:id
     app.route '/users/:id'
         .delete auth.requireAdmin, (req, res) ->
-            models.User.remove
+            models.User.findOneAndRemove
                     userID: req.params.id
                 , (err, user) ->
                     if err?
                         models.err res, err
                     else
                         res.status 200
-                        res.end 'User deleted.'
+                        res.end JSON.stringify user
